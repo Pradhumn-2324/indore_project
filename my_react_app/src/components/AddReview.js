@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import StarRating from "./StarRating"; // Import your StarRating component
 import axios from "axios";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 function AddReview() {
+  const { companyName } = useParams();
   const [reviewText, setReviewText] = useState("");
   const [rating, setRating] = useState(0);
 
+  const navigate = useNavigate()
   const handleReviewTextChange = (e) => {
     setReviewText(e.target.value);
   };
@@ -21,13 +24,14 @@ function AddReview() {
     const reviewData = {
       reviewText,
       rating,
-      companyName: "Company Name", // Replace with the actual company name
+      companyName, // Replace with the actual company name
     };
 
     // Example Axios request:
     axios.post('http://localhost:3001/addReview', reviewData)
-      .then((response) => {
-        console.log(response.data);
+      .then(result => {
+        console.log(result.data)
+        navigate('/viewcompanies')
         // Handle success or any other logic here
       })
       .catch((error) => {
@@ -40,6 +44,7 @@ function AddReview() {
     <div className="container mt-4">
       <h2>Add Review</h2>
       <form onSubmit={handleSubmit}>
+        <h1> {companyName}</h1>
         <div className="form-group">
           <label htmlFor="reviewText">Review Text:</label>
           <textarea
@@ -54,10 +59,13 @@ function AddReview() {
           <label>Rating:</label>
           <StarRating rating={rating} onRatingChange={handleRatingChange} />
         </div>
+        <Link to="/viewcompanies"> 
         <button type="submit" className="btn btn-primary">
-          Submit Review
+                    Submit Review
         </button>
+                     </Link>
       </form>
+
     </div>
   );
 }

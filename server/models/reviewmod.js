@@ -1,13 +1,11 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
-// Define the Review schema
 const reviewSchema = new mongoose.Schema({
-  companyName: String,
   reviewText: String,
   rating: Number,
+  companyName: String,
 });
 
-// Create the ReviewModel
-const ReviewModel = mongoose.model("Review", reviewSchema);
+const ReviewModel = mongoose.model('Review', reviewSchema);
 
-module.exports = ReviewModel
+module.exports = ReviewModel;

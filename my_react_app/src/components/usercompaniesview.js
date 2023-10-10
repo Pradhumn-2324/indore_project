@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FaMapMarker } from 'react-icons/fa';
-
+import { Link } from 'react-router-dom';
 function ViewCompanies() {
   const [data, setData] = useState([]);
   const [reviews, setReviews] = useState([]); // State to store reviews
@@ -44,12 +44,12 @@ function ViewCompanies() {
                 </div>
               </div>
               <div>
+                  <Link to={`/dummy/${company.CompanyName}`}> 
             <button
-                    className="btn btn-primary"
-                    
-                    >
+                    className="btn btn-primary">
                     Add Review
             </button>
+                     </Link>
               </div>
             </div>
             <div>

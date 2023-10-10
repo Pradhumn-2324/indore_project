@@ -3,6 +3,7 @@ const mongoose = require( 'mongoose')
 const cors = require("cors")
 const EmployeeModel = require('./models/client')
 const CompanyModel = require('./models/companies')
+const ReviewModel = require('./models/reviewmod'); // Adjust the path as needed
 
 
 const app = express()
@@ -54,12 +55,19 @@ app.post("/companies", (req,res) =>
 }
 )
 
-app.post("/addReview", (req,res) =>
-{
+app.post("/addReview", (req, res) => {
+    console.log("in review");
     ReviewModel.create(req.body)
-    .then(user => {console.log(user)})
-    .catch(err => res.json(err))
-})
+      .then((review) => {
+        console.log("Review added:", review);
+        res.json(review);
+      })
+      .catch((err) => {
+        console.error("Error adding review:", err);
+        res.status(500).json({ error: "Internal Server Error" });
+      });
+  });
+
 
 app.get("/companies", (req,res) =>
 {

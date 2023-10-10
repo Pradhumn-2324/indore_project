@@ -16,7 +16,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/companies' element={<ShowCompany />} />
         <Route path='/viewcompanies' element={<ViewCompanies />} />
-        <Route path='/dummy' element={<AddReview />} />
+        <Route path='/dummy/:companyName' element={<AddReview />} />
       </Routes>
     </BrowserRouter>
     </div>
