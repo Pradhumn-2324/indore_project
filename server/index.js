@@ -23,6 +23,7 @@ app.post('/register',(req,res) => {
 
 app.post('/login',(req,res) => {
     const {email, password} =req.body;
+    console.log ("hello "+email)
     EmployeeModel.findOne({email:email})
     .then(user => {
         console.log(user)
@@ -33,7 +34,7 @@ app.post('/login',(req,res) => {
                 {
                     res.json("Admin")
                 }
-                else{
+                else if(result.data === "User"){
                     res.json("User")
                 }
             }else{

@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
+
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showErrorModal, setShowErrorModal] = useState(false);
    const navigate = useNavigate()
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,11 +19,17 @@ function Login() {
         {
           navigate('/companies')
         }
-        else{
+        else if(result.data === "User"){
           navigate('/viewcompanies')
         }
+        else{
+          setShowErrorModal(true);
+          navigate('/login')
+
+        }
       })
-      .catch(err => console.log(err))
+      .catch(err => {console.log(err);
+      setShowErrorModal(true)})
       ;
   }
 
@@ -66,6 +76,20 @@ function Login() {
           </div>
         </div>
       </div>
+      {/* Error Modal */}
+      <Modal show={showErrorModal} onHide={() => setShowErrorModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Error</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          An error occurred. Please try again later.
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowErrorModal(false)}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }

@@ -7,7 +7,7 @@ function AddReview() {
   const { companyName } = useParams();
   const [reviewText, setReviewText] = useState("");
   const [rating, setRating] = useState(0);
-
+  const {datar} = useState() 
   const navigate = useNavigate()
   const handleReviewTextChange = (e) => {
     setReviewText(e.target.value);
@@ -26,7 +26,7 @@ function AddReview() {
       rating,
       companyName, // Replace with the actual company name
     };
-
+    
     // Example Axios request:
     axios.post('http://localhost:3001/addReview', reviewData)
       .then(result => {
@@ -64,6 +64,7 @@ function AddReview() {
                     Submit Review
         </button>
                      </Link>
+                     
       </form>
 
     </div>
