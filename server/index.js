@@ -15,7 +15,7 @@ app.post('/register',(req,res) => {
     EmployeeModel.create(req.body)
     .then(user => {
         if(user){
-            res.json(user)}
+            res.json("True")}
         })
     .catch(err => res.json(err))
     console.log(req)
@@ -34,7 +34,7 @@ app.post('/login',(req,res) => {
                 {
                     res.json("Admin")
                 }
-                else if(result.data === "User"){
+                else if(user.role === "User"){
                     res.json("User")
                 }
             }else{

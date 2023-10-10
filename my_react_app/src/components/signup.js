@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 function Signup() {
@@ -10,11 +10,15 @@ function Signup() {
   const [state, setState] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("Admin"); // Default role
-
+  const navigate = useNavigate()
   const handleSubmit = (e) => {
     e.preventDefault();
     axios.post('http://localhost:3001/register', { role, name, email, phone, city, state, password })
-      .then(result => console.log(result))
+      .then(result => {console.log(result);
+      if(result.data ==="True")
+    {
+      navigate("/login")
+    }})
       .catch(err => console.log(err));
   }
 
