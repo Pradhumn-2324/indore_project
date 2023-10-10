@@ -60,7 +60,7 @@ function Login() {
                 </div>
               </form>
               <p className="text-center mt-3">
-                Don't have an account? <Link to="/signup">Sign Up</Link>
+                Don't have an account? <Link to="/">Sign Up</Link>
               </p>
             </div>
           </div>

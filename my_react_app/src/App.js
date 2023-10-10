@@ -4,8 +4,7 @@ import Signup from './components/signup';
 import Login from './components/login';
 import ShowCompany from './components/company';
 import ViewCompanies from './components/usercompaniesview';
-import Dummy from "./components/dummy";
-
+import AddReview from "./components/AddReview";
 // import "../src/style.css";
 function App() {
   return (
@@ -17,7 +16,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/companies' element={<ShowCompany />} />
         <Route path='/viewcompanies' element={<ViewCompanies />} />
-        <Route path='/dummy' element={<Dummy />} />
+        <Route path='/dummy' element={<AddReview />} />
       </Routes>
     </BrowserRouter>
     </div>

@@ -54,6 +54,13 @@ app.post("/companies", (req,res) =>
 }
 )
 
+app.post("/addReview", (req,res) =>
+{
+    ReviewModel.create(req.body)
+    .then(user => {console.log(user)})
+    .catch(err => res.json(err))
+})
+
 app.get("/companies", (req,res) =>
 {
     CompanyModel.find()
